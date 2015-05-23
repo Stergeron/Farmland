@@ -26,16 +26,18 @@ body {
   bottom: 0;
 }
 #seeds {
- position: relative;
- left: -50%;
+  min-width: 300px;
+  min-height: 75px;
+  position: relative;
+  left: -50%;
  margin-left: auto;
  margin-right: auto;
  border: 2px solid black;
+ background-color: #ffee85;
 }
 .seed {
   display: inline-block;
   width: 75px;
   height: 75px;
-  background-color: #ffee85;
   border: 1px solid black;
 }
