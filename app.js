@@ -25,6 +25,7 @@ var Farm = function(ps) {
 };
 
 var Plant = function() {
+  this.name = "";
   this.age = 0;
   this.ripetime = 10;
   this.yield = 0;
