@@ -21,12 +21,15 @@ var game = new Vue({
           this.farm[y][x] = {};
         }
       }
+    },
+    fillFarm: function(farm){
+      this.$data = farm;
     }
   }
 });
 
-socket.emit("joinGame", "bob", function(farm){
+socket.emit("createFarm", "bob", function(farm){
   if(farm){
-    game.farm = farm;
+    game.fillFarm(farm);
   }
 });
