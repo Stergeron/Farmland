@@ -3,14 +3,6 @@ var socket = io();
 var game = new Vue({
   el: "#ui",
   data: {
-    farm: [
-
-    ],
-    inventory: [
-      {name: "ERROR SOMEONE ELSE LOGGED IN"},
-    ],
-    money: 100,
-    spectating: false
   },
   methods: {
     populateFarm: function() { //TEST UNTIL SERVER WERKS
@@ -28,8 +20,11 @@ var game = new Vue({
   }
 });
 
-socket.emit("createFarm", "bob", function(farm){
+socket.emit("createFarm", "bob", "blop", function(farm){
   if(farm){
     game.fillFarm(farm);
+  }
+  else {
+    console.error("SOMEONE ELSE LOGGED IN DINGUS");
   }
 });
