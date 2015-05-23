@@ -91,6 +91,9 @@ io.on('connection', function(socket) {
 		socket.on("createFarm", function(nm, cb) {
 			if(farms[nm] == undefined) {
 				farms[nm] = new Farm();
+				cb(true);
+			} else {
+				cb(false);
 			}
 		});
 		socket.on("plant", function(nm, row, col, cb) {
