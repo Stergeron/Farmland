@@ -44,14 +44,18 @@ console.log(farms);
 function plant(owner, plant, row, col) {
 	if(farms[owner].farm[row][col] != {}) {
 		farms[owner].farm[row][col] = plant;
+		return true;
 	}
+	return false;
 }
 
 function pick(owner, row, col) {
 	if(farms[owner].farm[row][col] != {} && farms[owner].farm[row][col].age > farms[owner].farm[row][col].ripetime) {
 		farms[owner].inventory.push(farms[owner].farm[row][col]);
 		farms[owner].farm[row][col] = {};
+		return true;
 	}
+	return false;
 }
 
 function grow() {
@@ -89,6 +93,12 @@ io.on('connection', function(socket) {
 				farms[nm] = new Farm();
 			}
 		});
+		socket.on("plant", function(nm, row, col, cb) {
+			cb(plant(nm, row, col));
+		}
+		socket.on("pick", function(nm, row, col, cb) {
+			cb(pick(nm, row, col));
+		}
 	} catch (err) {
 		console.log(err);
 	}
