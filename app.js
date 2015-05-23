@@ -14,9 +14,9 @@ var farms = {};
 var Farm = function(ps) {
   this.gold = 100;
   this.farm = [];
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < 5; i++) {
     this.farm.push([]);
-    for (var j = 0; j < 10; j++) {
+    for (var j = 0; j < 5; j++) {
       this.farm[i].push({});
     }
   }
