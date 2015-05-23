@@ -32,14 +32,14 @@ var Plant = function() {
 }
 
 console.log("Farmland is running on port 8989");
-
+/*
 var farm = new Farm();
 farms["William"] = farm;
 console.log(new Farm());
 plant("William", new Plant(), 3, 3);
 pick("William", 3, 3);
 grow()
-console.log(farms);
+console.log(farms);*/
 
 function plant(owner, plant, row, col) {
 	if(farms[owner].farm[row][col] != {}) {
@@ -63,31 +63,17 @@ function grow() {
 	keys.forEach(function (key) {
 		farms[key].farm.forEach(function (row) {
 			row.forEach(function(plant) {
-				if(plant.age != undefined) {
+				if(plant.age !== undefined) {
 					plant.age++;
 				}
 			});
 		});
 	});
-	console.log(farms["William"].farm);
 }
 
 setInterval(grow, 1000);
 
 io.on('connection', function(socket) {
-	try {
-		var farm = {};
-		socket.on("joinGame", function(nm, cb) {
-			if (findForIndex(players, "name", nm) === undefined && rejectednames.indexOf(nm) < 0 && nm.length < 18) {
-				cb(nm);
-				player.name = nm;
-				player.id = socket.id;
-				player.inventory = [];
-				players.push(player);
-			} else {
-				cb("REJECT");
-			}
-		});
 		socket.on("createFarm", function(nm, cb) {
 			if(farms[nm].farm == undefined) {
 				farms[nm].farm = new Farm();
@@ -98,12 +84,8 @@ io.on('connection', function(socket) {
 		});
 		socket.on("plant", function(nm, row, col, cb) {
 			cb(plant(nm, row, col));
-		}
+		});
 		socket.on("pick", function(nm, row, col, cb) {
 			cb(pick(nm, row, col));
-		}
-	} catch (err) {
-		console.log(err);
-	}
+		});
 });
-
