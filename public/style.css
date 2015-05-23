@@ -16,12 +16,17 @@ body {
 #farm {
   white-space: nowrap;
 }
+.row {
+  margin-top: -4px;
+  padding: 0px;
+}
 .plant {
   width: 100px;
   height: 100px;
   display: inline-block;
   background-color: #b2ffb3;
-  border: 1px solid #b1b1b1;
+  border-right: 1px solid #b1b1b1;
+  border-bottom: 1px solid #b1b1b1;
 }
 #outer {
   position: fixed;
