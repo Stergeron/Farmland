@@ -75,10 +75,9 @@ setInterval(grow, 1000);
 
 io.on('connection', function(socket) {
 		socket.on("createFarm", function(nm, cb) {
-			if(farms[nm] === undefined) {
-				var farm = new Farm();
-				farms[nm] = farm;
-				cb(farm);
+			if(farms[nm].farm == undefined) {
+				farms[nm].farm = new Farm();
+				cb(true);
 			} else {
 				cb(false);
 			}
