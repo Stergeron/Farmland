@@ -21,7 +21,8 @@ var Farm = function(ps) {
     }
   }
   this.inventory = [];
-	this.password = ps;
+  this.inventory.push({plant: new Plant(), quantity: 3});
+  this.password = ps;
 };
 
 var Plant = function() {
@@ -31,6 +32,7 @@ var Plant = function() {
   this.yield = 0;
   this.color = "#FF0000";
   this.shape = 0;
+  this.hash = this.name+this.ripetime+this.yield+this.color+this.shape;
 };
 
 console.log("Farmland is running on port 8989");
