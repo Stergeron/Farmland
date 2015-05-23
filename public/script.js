@@ -7,7 +7,7 @@ var game = new Vue({
 
     ],
     inventory: [
-      {name: "seed"},{name: "poop"}
+      {name: "ERROR SOMEONE ELSE LOGGED IN"},
     ],
     money: 100,
     spectating: false
