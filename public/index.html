@@ -18,7 +18,7 @@
   </div>
   <div id="outer">
   <div id="seeds">
-    <div class="seed" v-repeat="inventory">{{name}}</div>
+    <div class="seed" v-repeat="seed: inventory" v-on="click: plantingMode(seed)">{{quantity}}</div>
   </div>
   </div>
 </div>
