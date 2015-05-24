@@ -26,7 +26,7 @@ var Farm = function(pw, row, col) {
   }
   this.inventory = [];
   this.inventory.push({
-    plant: new Plant(),
+    plant: mutatePlant(new Plant(), false),
     quantity: 3
   });
   this.password = pw;
@@ -42,15 +42,15 @@ var Plant = function() {
   this.hash = this.name + this.ripetime + this.yield + this.color + this.shape;
 };
 
-var mutatePlant = function(plant) {
+var mutatePlant = function(plant, attrmod) {
   var plantTypes = ["tomato", "carrot", "pickle", "peas"];
   plant.age = 0;
   var decreaseRipe = Math.floor(Math.random() * 2);
-  if (decreaseRipe === 0) plant.ripetime /= Math.floor(Math.random() * 2) + 1;
+  if (decreaseRipe === 0 && attrmod) plant.ripetime /= Math.floor(Math.random() * 2) + 1;
   else plant.ripetime *= Math.floor(Math.random() * 5) + 1;
   plant.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
   var changeYield = Math.floor(Math.random() * 2);
-  if (changeYield === 0) plant.yield += Math.floor(Math.random() * 51);
+  if (changeYield === 0 && attrmod) plant.yield += Math.floor(Math.random() * 51);
   plant.hash = plant.name + plant.ripetime + plant.yield + plant.color + plant.shape;
   var plantType = Math.floor(Math.random() * 4);
   plant.name = plantTypes[plantType];
@@ -107,7 +107,7 @@ function pickFood(owner, row, col) {
         var seedYield = Math.floor(Math.random() * 2) + 1;
         var mutate = Math.floor(Math.random() * 10);
         if (mutate === 0) {
-          var newitem = mutatePlant(JSON.parse(JSON.stringify(item.plant)));
+          var newitem = mutatePlant(JSON.parse(JSON.stringify(item.plant)), true);
           inventory.push({
             plant: newitem,
             quantity: seedYield
