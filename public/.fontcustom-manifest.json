@@ -1,13 +1,13 @@
 {
   "checksum": {
-    "previous": "b9ce85cf3b48596b698f0da8a1ae73818cd011bc1829c77d50d483d0bb18ff65",
-    "current": "b9ce85cf3b48596b698f0da8a1ae73818cd011bc1829c77d50d483d0bb18ff65"
+    "previous": "bcb8658278dd5063a8ae612ce58f6a08d470acbf015cdd71beb92861dbefeb50",
+    "current": "bcb8658278dd5063a8ae612ce58f6a08d470acbf015cdd71beb92861dbefeb50"
   },
   "fonts": [
-    "fontcustom/fontcustom_b9ce85cf3b48596b698f0da8a1ae7381.ttf",
-    "fontcustom/fontcustom_b9ce85cf3b48596b698f0da8a1ae7381.svg",
-    "fontcustom/fontcustom_b9ce85cf3b48596b698f0da8a1ae7381.woff",
-    "fontcustom/fontcustom_b9ce85cf3b48596b698f0da8a1ae7381.eot"
+    "fontcustom/fontcustom_bcb8658278dd5063a8ae612ce58f6a08.ttf",
+    "fontcustom/fontcustom_bcb8658278dd5063a8ae612ce58f6a08.svg",
+    "fontcustom/fontcustom_bcb8658278dd5063a8ae612ce58f6a08.woff",
+    "fontcustom/fontcustom_bcb8658278dd5063a8ae612ce58f6a08.eot"
   ],
   "glyphs": {
     "carrot": {
@@ -17,6 +17,10 @@
     "peas": {
       "codepoint": 61699,
       "source": "./icons/peas.svg"
+    },
+    "tomato": {
+      "codepoint": 61700,
+      "source": "./icons/tomato.svg"
     }
   },
   "options": {
