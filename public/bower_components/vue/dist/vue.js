@@ -495,7 +495,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * Iterator to call attached hook
-	 * 
+	 *
 	 * @param {Vue} child
 	 */
 
@@ -519,7 +519,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * Iterator to call detached hook
-	 * 
+	 *
 	 * @param {Vue} child
 	 */
 
@@ -569,7 +569,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	/**
-	 * Initialize the data. 
+	 * Initialize the data.
 	 */
 
 	exports._initData = function () {
@@ -2305,7 +2305,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var descriptor = dirParser.parse(withVal)[0]
 	    var def = options.directives['with']
 	    withLinkFn = function (vm, el) {
-	      vm._bindDir('with', el, descriptor, def)   
+	      vm._bindDir('with', el, descriptor, def)
 	    }
 	  }
 	  return function blockContainerLinkFn (vm) {
@@ -5420,7 +5420,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function enableDebug () {
 
 	  var hasConsole = typeof console !== 'undefined'
-	  
+
 	  /**
 	   * Log a message.
 	   *
@@ -5478,7 +5478,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  update: function (value) {
 	    this.el[this.attr] = _.toString(value)
 	  }
-	  
+
 	}
 
 /***/ },
@@ -5612,7 +5612,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  unbind: function () {
 	    delete this.vm.$$[this.expression]
 	  }
-	  
+
 	}
 
 /***/ },
@@ -5640,7 +5640,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // if any.
 	    vm._refID = this.expression
 	  }
-	  
+
 	}
 
 /***/ },
@@ -6109,7 +6109,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  /**
 	   * Set childVM and parent ref
 	   */
-	  
+
 	  setCurrent: function (child) {
 	    this.childVM = child
 	    var refID = child._refID || this.refID
@@ -6747,7 +6747,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  compile: function (frag) {
 	    var vm = this.vm
 	    // the linker is not guaranteed to be present because
-	    // this function might get called by v-partial 
+	    // this function might get called by v-partial
 	    this.unlink = this.linker
 	      ? this.linker(vm, frag)
 	      : vm.$compile(frag)
@@ -6888,7 +6888,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          }
 	        }
 	      )
-	      
+
 	      // set the child initial value first, before setting
 	      // up the child watcher to avoid triggering it
 	      // immediately.
@@ -8254,7 +8254,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Support jQuery events, since jQuery.trigger() doesn't
 	    // trigger native events in some cases and some plugins
 	    // rely on $.trigger()
-	    // 
+	    //
 	    // We want to make sure if a listener is attached using
 	    // jQuery, it is also removed with jQuery, that's why
 	    // we do the check for each directive instance and

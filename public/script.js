@@ -17,10 +17,13 @@ var game = new Vue({
         var _this = this;
         socket.emit("plantFood", this.name, this.planting.plant, tile.row, tile.col, function(cb) {
           if (cb) {
-            _this.player.farm[tile.row][tile.col] = _this.planting.plant;
-            console.log(_this.player.farm[tile.row][tile.col]);
+            _this.player.farm[tile.row][tile.col].color = _this.planting.plant.color;
+            _this.player.farm[tile.row][tile.col].name = _this.planting.plant.name;
+            _this.player.farm[tile.row][tile.col].ripetime = _this.planting.plant.ripetime;
+            _this.player.farm[tile.row][tile.col].age = _this.planting.plant.age;
+            location.reload();
             _this.player.inventory[_this.player.inventory.indexOf(_this.planting)].quantity--;
-            if(_this.planting.quantity < 1) _this.planting = "";
+            if (_this.planting.quantity < 1) _this.planting = "";
           }
         });
       }
@@ -30,7 +33,7 @@ var game = new Vue({
     }
   },
   filters: {
-    debug: function(val){
+    debug: function(val) {
       console.log(val.name);
       return true;
     }
@@ -38,10 +41,9 @@ var game = new Vue({
 });
 
 socket.emit("createFarm", game.name, game.pw, function(farm) {
-	if (farm) {
-		game.fillFarm(farm);
-	} else {
-		console.error("SOMEONE ELSE LOGGED IN DINGUS");
-	}
+  if (farm) {
+    game.fillFarm(farm);
+  } else {
+    console.error("SOMEONE ELSE LOGGED IN DINGUS");
+  }
 });
-game.$watch('player.farm', function(){console.log("updated")}, true);

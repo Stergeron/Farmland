@@ -1,13 +1,13 @@
 {
   "checksum": {
-    "previous": "bcb8658278dd5063a8ae612ce58f6a08d470acbf015cdd71beb92861dbefeb50",
-    "current": "bcb8658278dd5063a8ae612ce58f6a08d470acbf015cdd71beb92861dbefeb50"
+    "previous": "a6e0ed00aed1d2368e8e127813f1002bfa2222e3eeee1e49b9bee949cc4f5a61",
+    "current": "a6e0ed00aed1d2368e8e127813f1002bfa2222e3eeee1e49b9bee949cc4f5a61"
   },
   "fonts": [
-    "fontcustom/fontcustom_bcb8658278dd5063a8ae612ce58f6a08.ttf",
-    "fontcustom/fontcustom_bcb8658278dd5063a8ae612ce58f6a08.svg",
-    "fontcustom/fontcustom_bcb8658278dd5063a8ae612ce58f6a08.woff",
-    "fontcustom/fontcustom_bcb8658278dd5063a8ae612ce58f6a08.eot"
+    "fontcustom/fontcustom_a6e0ed00aed1d2368e8e127813f1002b.ttf",
+    "fontcustom/fontcustom_a6e0ed00aed1d2368e8e127813f1002b.svg",
+    "fontcustom/fontcustom_a6e0ed00aed1d2368e8e127813f1002b.woff",
+    "fontcustom/fontcustom_a6e0ed00aed1d2368e8e127813f1002b.eot"
   ],
   "glyphs": {
     "carrot": {
@@ -17,6 +17,10 @@
     "peas": {
       "codepoint": 61699,
       "source": "./icons/peas.svg"
+    },
+    "seed": {
+      "codepoint": 61701,
+      "source": "./icons/seed.svg"
     },
     "tomato": {
       "codepoint": 61700,

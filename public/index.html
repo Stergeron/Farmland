@@ -14,8 +14,7 @@
     <div id="farm">
       <div class="row" v-repeat="row: player.farm">
         <div class="plant" v-repeat="crop: row" v-on="click: plant(crop)">
-          {{crop.name}}
-          <i v-style="color: crop.color" class="icon-{{crop.name}}"></i>
+          <i v-style="color: crop.color" class="icon-{{(crop.age >= crop.ripetime) ? crop.name : 'seeds'}}"></i>
         </div>
       </div>
   </div>
