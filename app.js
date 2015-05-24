@@ -17,7 +17,7 @@ var Farm = function(pw, row, col) {
 	for (var i = 0; i < row; i++) {
 		this.farm.push([]);
 		for (var j = 0; j < col; j++) {
-			this.farm[i].push({row: i, col: j, name: ""});
+			this.farm[i].push({row: i, col: j, plant: {}});
 		}
 	}
 	this.inventory = [];
@@ -55,7 +55,7 @@ function plantFood(owner, food, row, col) {
 	inventory.forEach(function(item) {
 		if(food.hash == item.plant.hash && item.quantity > 0) {
 			item.quantity--;
-			farms[owner].farm[row][col] = item.plant;
+			farms[owner].farm[row][col] = {row: row, col: col, plant: item.plant};
 			found = true;
 		}
 	});
