@@ -22,6 +22,7 @@ var game = new Vue({
         this.pick(tile);
       } else {
         this.plant(tile);
+		this.planting = "";
       }
     },
     plant: function(tile) {
@@ -40,7 +41,6 @@ var game = new Vue({
 				}
 			});
             if (_this.planting.quantity < 1) _this.planting = "";
-			location.reload();
           }
         });
       }
