@@ -38,9 +38,11 @@ var game = new Vue({
 			}
 		},
 		touch: function(tile) {
-			if (this.planting == -1) {
+			if (tile.plant.age >= tile.plant.ripetime || this.planting == -1) {
+				console.log("Picking");
 				this.pick(tile);
 			} else {
+				console.log("Planting");
 				this.plant(tile);
 			}
 		},
@@ -63,22 +65,20 @@ var game = new Vue({
 			});
 		},
 		pick: function(tile) {
-			if (tile.plant.age >= tile.plant.ripetime) {
-				var _this = this;
-				socket.emit("pickFood", this.name, tile.row, tile.col, function(cb) {
-					if (cb) {
-						_this.player.inventory.forEach(function(item) {
-							if (item.plant.hash == tile.plant.hash) {
-								_this.player.farm[tile.row][tile.col].plant.color = undefined;
-								_this.player.farm[tile.row][tile.col].plant.name = undefined;
-								_this.player.farm[tile.row][tile.col].plant.ripetime = undefined;
-								_this.player.farm[tile.row][tile.col].plant.age = undefined;
-								item.quantity++;
-							}
-						});
-					}
-				});
-			}
+			var _this = this;
+			socket.emit("pickFood", this.name, tile.row, tile.col, function(cb) {
+				if (cb) {
+					_this.player.inventory.forEach(function(item) {
+						if (item.plant.hash == tile.plant.hash) {
+							_this.player.farm[tile.row][tile.col].plant.color = undefined;
+							_this.player.farm[tile.row][tile.col].plant.name = undefined;
+							_this.player.farm[tile.row][tile.col].plant.ripetime = undefined;
+							_this.player.farm[tile.row][tile.col].plant.age = undefined;
+							item.quantity++;
+						}
+					});
+				}
+			});
 		},
 		fillFarm: function(farm) {
 			this.player = farm;
