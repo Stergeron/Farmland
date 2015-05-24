@@ -9,16 +9,27 @@
 </head>
 <body>
 <div id="inventorybtn" v-on="click: toggleInventory()">{{showInv ? "Menu" : "Inventory"}}</div>
-  <div id="inventory" v-show="showInv">
+  <div class="menu" v-show="(showInv && !showMarket)">
     <div id="goldshow">{{player.gold}}g</div>
     <h1>Inventory</h1>
     <ul>
       <li v-repeat="item: player.inventory" v-show="(item.quantity > 0)"> <i v-style="color: item.plant.color" class="icon-{{item.plant.name}}"></i>
-        Ripening time: <b>{{item.plant.ripetime}}</b>s ~~ Minimum Yield: <b>{{item.plant.yield}}g</b> ~~ Quantity: <b>{{item.quantity}}</b> <div class="sqbtn" v-on="click: sell(item)">S (+{{item.plant.yield}})</div><div class="sqbtn" v-on="click: market(item)">M (+{{item.plant.yield+20}})</div>
+        Ripening time: <b>{{item.plant.ripetime}}</b>s ~~ Minimum Yield: <b>{{item.plant.yield}}g</b> ~~ Quantity: <b>{{item.quantity}}</b> <div class="sqbtn" v-on="click: sell(item)">S (+{{item.plant.yield}})</div><div class="sqbtn" v-on="click: market(item)">M (+{{item.plant.yield+15}})</div>
       </li>
     </ul>
+    <div class="marketoggle" v-on="click: marketoggle()">Market</div>
   </div>
-  <div id="ui" v-show="!showInv">
+  <div class="menu" v-show="(showMarket && !showInv)">
+    <div id="goldshow">{{player.gold}}g</div>
+    <h1>Market</h1>
+    <ul>
+      <li v-repeat="item: marketListings" v-show="(item.quantity > 0)">
+        <i v-style="color: item.plant.color" class="icon-{{item.plant.name}}"></i> Seller: <b>{{item.seller}}</b> ~~ Ripening time: <b>{{item.plant.ripetime}}</b>s ~~ Minimum Yield: <b>{{item.plant.yield}}</b> ~~ Quantity: <b>{{item.quantity}}</b> <div class="sqbtn" v-on="click: buy(item)">B (-{{item.price}})</div>
+      </li>
+    </ul>
+    <div class="marketoggle" v-on="click: marketoggle()">Inventory</div>
+  </div>
+  <div id="ui" v-show="(!showInv && !showMarket)">
     <div class="outer">
     <div id="name">{{name}}'s farm</div></div>
     <div id="farm">

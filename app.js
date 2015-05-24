@@ -10,6 +10,7 @@ var server = app.listen(port);
 var io = require('socket.io')(server);
 
 var farms = {};
+var marketListings = [];
 
 var Farm = function(pw, row, col) {
   this.gold = 20;
@@ -86,7 +87,7 @@ function plantFood(owner, tile, cb) {
 function pickFood(owner, row, col) {
   var plant = farms[owner].farm[row][col].plant;
   var inventory = farms[owner].inventory;
-  if (plant.hash != undefined && plant.age > plant.ripetime) {
+  if (plant.hash !== undefined && plant.age > plant.ripetime) {
     var found = false;
     inventory.forEach(function(item) {
       if (item.plant.hash == plant.hash) {
@@ -124,22 +125,6 @@ function pickFood(owner, row, col) {
   return false;
 }
 
-/*function growFood() {
-	var keys = Object.keys(farms);
-	keys.forEach(function(key) {
-		if (farms[key]) {
-			farms[key].farm.forEach(function(row) {
-				row.forEach(function(plant) {
-					if (plant.age !== undefined) {
-						plant.age++;
-					}
-				});
-			});
-		}
-	});
-}*/
-
-
 io.on('connection', function(socket) {
   var name = "";
   var interval;
@@ -151,6 +136,7 @@ io.on('connection', function(socket) {
       cb(farm);
     } else if (farms[nm].password == pw) {
       cb(farms[nm]);
+			socket.emit("market", marketListings);
     } else {
       cb(false);
     }
@@ -173,6 +159,41 @@ io.on('connection', function(socket) {
       });
     }
   });
+	socket.on("buy", function(index){
+		var listing = marketListings[index];
+		if(listing !== undefined && listing.quantity > 0){
+			listing.quantity--;
+			farms[listing.seller].gold += Math.abs(listing.price);
+			farms[name].gold -= Math.abs(listing.price);
+			var found = false;
+			farms[name].inventory.forEach(function(item){
+				if(item.plant.hash == listing.plant.hash){
+					item.quantity++;
+					found = true;
+				}
+			});
+			if(!found) farms[name].inventory.push(listing.plant);
+			socket.emit("market", marketListings);
+			socket.emit("update", farms[name]);
+		}
+	});
+	socket.on("market", function(item){
+		farms[name].inventory.forEach(function(i){
+			if(item.plant.hash == i.plant.hash){
+				i.quantity--;
+				var found = false;
+				marketListings.forEach(function(q){
+					if(i.plant.hash == q.plant.hash && q.seller == name){
+						found = true;
+						q.quantity++;
+					}
+				});
+				if(!found) marketListings.push({plant: item.plant, price: item.plant.yield+15, seller: name, quantity: 1});
+				socket.emit("update", farms[name]);
+				socket.emit("market", marketListings);
+			}
+		});
+	});
   var growFood = function() {
     farms[name].farm.forEach(function(row) {
       row.forEach(function(tile) {
