@@ -39,7 +39,7 @@ var game = new Vue({
     pick: function(tile) {
       if (tile.age >= tile.ripetime) {
         var _this = this;
-        socket.emit("pickFood", this.name, tile, tile.row, tile.col, function(cb) {
+        socket.emit("pickFood", this.name, tile.row, tile.col, function(cb) {
           if (cb) {
             _this.player.inventory.forEach(function(item) {
               if (item.plant.hash == tile.hash) {
