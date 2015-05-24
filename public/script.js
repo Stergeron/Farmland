@@ -1,7 +1,7 @@
 var socket = io();
 
 var game = new Vue({
-	el: "body",
+	el: "html",
 	data: {
 		player: {},
 		planting: -1,
@@ -21,7 +21,7 @@ var game = new Vue({
 			if(item == "land") socket.emit("buyland", function(price) {
 				_this.landprice = price;
 			});
-			else socket.emit("buy", this.marketListings, indexOf(item));
+			else socket.emit("buy", this.marketListings.indexOf(item));
 		},
 		market: function(item){
 			socket.emit("market", item);
@@ -52,21 +52,23 @@ var game = new Vue({
 		},
 		plant: function(tile) {
 			var _this = this;
-			socket.emit("plantFood", this.name, { row: tile.row, col: tile.col, plant: this.player.inventory[this.planting].plant }, function(cb) {
-				if (cb) {
-					_this.player.farm[tile.row][tile.col].plant.color = _this.player.inventory[_this.planting].plant.color;
-					_this.player.farm[tile.row][tile.col].plant.name = _this.player.inventory[_this.planting].plant.name;
-					_this.player.farm[tile.row][tile.col].plant.ripetime = _this.player.inventory[_this.planting].plant.ripetime;
-					_this.player.farm[tile.row][tile.col].plant.hash = _this.player.inventory[_this.planting].plant.hash;
-					_this.player.farm[tile.row][tile.col].plant.age = 0;
-					_this.player.inventory.forEach(function(item) {
-						if(item.plant == _this.player.inventory[_this.planting].plant) {
-							item.quantity--;
-						}
-					});
-					if (_this.player.inventory[_this.planting].quantity < 1) _this.planting = -1;
-				}
-			});
+			if(this.player.farm[tile.row][tile.col].plant !== undefined) {
+				socket.emit("plantFood", this.name, { row: tile.row, col: tile.col, plant: this.player.inventory[this.planting].plant }, function(cb) {
+					if (cb) {
+						_this.player.farm[tile.row][tile.col].plant.color = _this.player.inventory[_this.planting].plant.color;
+						_this.player.farm[tile.row][tile.col].plant.name = _this.player.inventory[_this.planting].plant.name;
+						_this.player.farm[tile.row][tile.col].plant.ripetime = _this.player.inventory[_this.planting].plant.ripetime;
+						_this.player.farm[tile.row][tile.col].plant.hash = _this.player.inventory[_this.planting].plant.hash;
+						_this.player.farm[tile.row][tile.col].plant.age = 0;
+						_this.player.inventory.forEach(function(item) {
+							if(item.plant == _this.player.inventory[_this.planting].plant) {
+								item.quantity--;
+							}
+						});
+						if (_this.player.inventory[_this.planting].quantity < 1) _this.planting = -1;
+					}
+				});
+			}
 		},
 		pick: function(tile) {
 			var _this = this;
@@ -101,6 +103,7 @@ var game = new Vue({
 var parser = document.createElement('a');
 parser.href = window.location.href;
 var creds = parser.hash.split("|");
+creds[0] = creds[0].replace("#", "");
 
 socket.emit("createFarm", creds[0], creds[1], function(farm) {
   game.name = creds[0];
