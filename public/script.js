@@ -3,18 +3,24 @@ var socket = io();
 var game = new Vue({
   el: "#ui",
   data: {
+    player: {},
+    planting: "",
+    name: "bob"
   },
   methods: {
     plantingMode: function(seed){
-      console.log(seed);
+      this.planting = seed;
+    },
+    plant: {
+
     },
     fillFarm: function(farm){
-      this.$data = farm;
+      this.player = farm;
     }
   }
 });
 
-socket.emit("createFarm", "bob", "blop", function(farm){
+socket.emit("createFarm", game.name, "blop", function(farm){
   if(farm){
     game.fillFarm(farm);
   }

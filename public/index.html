@@ -8,17 +8,17 @@
 </head>
 <body>
   <div id="ui">
-    <div id="container">
+    <div class="outer">
+    <div id="name">{{name}}'s farm</div></div>
     <div id="farm">
-      <div class="row" v-repeat="row: farm">
-        <div class="plant" v-repeat="crop: row">
+      <div class="row" v-repeat="row: player.farm">
+        <div class="plant" v-repeat="crop: row" v-on="click: plant()">
         </div>
       </div>
-    </div>
   </div>
-  <div id="outer">
+  <div class="outer bottom">
   <div id="seeds">
-    <div class="seed" v-repeat="seed: inventory" v-on="click: plantingMode(seed)">{{quantity}}</div>
+    <div class="seed" v-repeat="seed: player.inventory" v-on="click: plantingMode(seed)">{{quantity}}, {{hash}}</div>
   </div>
   </div>
 </div>
