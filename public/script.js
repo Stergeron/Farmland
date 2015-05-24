@@ -13,7 +13,6 @@ var game = new Vue({
       this.planting = seed;
     },
     touch: function(tile) {
-      console.log(tile);
       if (this.planting === "") {
         this.pick(tile);
       } else {
