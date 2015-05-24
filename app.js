@@ -11,12 +11,12 @@ var io = require('socket.io')(server);
 
 var farms = {};
 
-var Farm = function(pw) {
+var Farm = function(pw, row, col) {
   this.gold = 100;
   this.farm = [];
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < row; i++) {
     this.farm.push([]);
-    for (var j = 0; j < 5; j++) {
+    for (var j = 0; j < col; j++) {
       this.farm[i].push({});
     }
   }
@@ -84,7 +84,7 @@ io.on('connection', function(socket) {
   socket.on("createFarm", function(nm, ps, cb) {
     name = nm;
     if (farms[nm] === undefined || farms[nm].password == ps) {
-      var farm = new Farm(ps);
+      var farm = new Farm(ps, 7, 7);
       farms[nm] = farm;
       cb(farm);
     } else {
