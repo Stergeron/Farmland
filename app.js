@@ -53,7 +53,6 @@ function plantFood(owner, food, row, col) {
 		if(food.hash == item.plant.hash && item.quantity > 0) {
 			item.quantity--;
 			plant = item.plant;
-			console.log("Blooped");
 			found = true;
 		}
 	});
@@ -102,11 +101,13 @@ io.on('connection', function(socket) {
   var name = "";
   socket.on("createFarm", function(nm, pw, cb) {
     name = nm;
-    if (farms[nm] === undefined || farms[nm].password == pw) {
+    if (farms[nm] === undefined) {
       var farm = new Farm(pw, 7, 7);
       farms[nm] = farm;
       cb(farm);
-    } else {
+    } else if(farms[nm].password == pw) {
+			cb(farms[nm]);
+		} else {
       cb(false);
     }
   });
