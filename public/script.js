@@ -16,7 +16,8 @@ var game = new Vue({
       socket.emit("sell", item);
     },
     buy: function(item){
-      socket.emit("buy", this.marketListings.indexOf(item));
+      if(item == "land") socket.emit("buyland");
+      else socket.emit("buy", this.marketListings.indexOf(item));
     },
     market: function(item){
       socket.emit("market", item);

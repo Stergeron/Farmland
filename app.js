@@ -52,9 +52,9 @@ var mutatePlant = function(plant, attrmod) {
   plant.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
   var changeYield = Math.floor(Math.random() * 2);
   if (changeYield === 0 && attrmod) plant.yield += Math.floor(Math.random() * 51);
-  plant.hash = plant.name + plant.ripetime + plant.yield + plant.color + plant.shape;
   var plantType = Math.floor(Math.random() * 4);
   plant.name = plantTypes[plantType];
+  plant.hash = plant.name + plant.ripetime + plant.yield + plant.color + plant.shape;
   return plant;
 };
 
@@ -144,6 +144,7 @@ io.on('connection', function(socket) {
   });
   socket.on("plantFood", function(nm, tile, cb) {
     cb(plantFood(nm, tile));
+		socket.emit("update", farms[name]);
   });
   socket.on("pickFood", function(nm, row, col, cb) {
     cb(pickFood(nm, row, col));
@@ -193,6 +194,9 @@ io.on('connection', function(socket) {
 				socket.emit("market", marketListings);
 			}
 		});
+	});
+	socket.on("buyland", function(){
+
 	});
   var growFood = function() {
     farms[name].farm.forEach(function(row) {
