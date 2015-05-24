@@ -48,11 +48,15 @@ console.log("Farmland is running on port 8989");
 function plantFood(owner, food, row, col) {
 	var inventory = farms[owner].inventory;
 	var plant = farms[owner].farm[row][col];
+	console.log(plant.hash);
+	if(plant.hash != undefined) {
+		return false;
+	}
 	var found = false;
 	inventory.forEach(function(item) {
 		if(food.hash == item.plant.hash && item.quantity > 0) {
 			item.quantity--;
-			plant = item.plant;
+			farms[owner].farm[row][col] = item.plant;
 			found = true;
 		}
 	});
