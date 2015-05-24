@@ -14,22 +14,25 @@ var farms = {};
 var Farm = function(ps) {
   this.gold = 100;
   this.farm = [];
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < 5; i++) {
     this.farm.push([]);
-    for (var j = 0; j < 10; j++) {
+    for (var j = 0; j < 5; j++) {
       this.farm[i].push({});
     }
   }
   this.inventory = [];
-	this.password = ps;
+  this.inventory.push({plant: new Plant(), quantity: 3});
+  this.password = ps;
 };
 
 var Plant = function() {
+  this.name = "";
   this.age = 0;
   this.ripetime = 10;
   this.yield = 0;
   this.color = "#FF0000";
   this.shape = 0;
+  this.hash = this.name+this.ripetime+this.yield+this.color+this.shape;
 };
 
 console.log("Farmland is running on port 8989");
