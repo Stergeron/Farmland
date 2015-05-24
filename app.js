@@ -52,7 +52,6 @@ function plantFood(owner, food, row, col) {
 	inventory.forEach(function(item) {
 		if(food.hash == item.plant.hash && item.quantity > 0) {
 			item.quantity--;
-			inventory.splice(inventory.indexOf(item), 1);
 			plant = item.plant;
 			console.log("Blooped");
 			found = true;
