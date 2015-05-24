@@ -132,6 +132,7 @@ function pickFood(owner, row, col) {
 
 io.on('connection', function(socket) {
   var name = "";
+	var interval;
   socket.on("createFarm", function(nm, pw, cb) {
     name = nm;
     if (farms[nm] === undefined) {
@@ -143,7 +144,7 @@ io.on('connection', function(socket) {
 		} else {
       cb(false);
     }
-		setInterval(growFood, 1000);
+		interval = setInterval(growFood, 1000);
   });
   socket.on("plantFood", function(nm, tile, cb) {
     cb(plantFood(nm, tile));
@@ -161,4 +162,7 @@ io.on('connection', function(socket) {
 			});
 		});
 	};
+	socket.on("disconnect", function(){
+		clearInterval(interval);
+	});
 });

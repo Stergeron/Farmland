@@ -12,8 +12,8 @@
   <div id="inventory" v-show="showInv">
     <h1>Inventory</h1>
     <ul>
-      <li v-repeat="item: player.inventory"> <i v-style="color: item.plant.color" class="icon-{{item.plant.name}}"></i>
-        Ripening time: <b>{{item.plant.ripetime}}</b>s ~~ Minimum Yield: <b>{{item.plant.yield}}g</b>
+      <li v-repeat="item: player.inventory" v-show="(item.quantity > 0)"> <i v-style="color: item.plant.color" class="icon-{{item.plant.name}}"></i>
+        Ripening time: <b>{{item.plant.ripetime}}</b>s ~~ Minimum Yield: <b>{{item.plant.yield}}g</b> ~~ Quantity: <b>{{item.quantity}}</b> <div class="sqbtn">S</div>
       </li>
     </ul>
   </div>
