@@ -15,7 +15,7 @@ var game = new Vue({
     plant: function(tile) {
       if (this.planting !== "") {
         var _this = this;
-        socket.emit("plant", this.name, this.planting.plant, tile.row, tile.col, function(cb) {
+        socket.emit("plantFood", this.name, this.planting.plant, tile.row, tile.col, function(cb) {
           if (cb) {
             _this.player.farm[tile.row][tile.col] = _this.planting.plant;
             _this.player.inventory[_this.player.inventory.indexOf(_this.planting)].quantity--;
