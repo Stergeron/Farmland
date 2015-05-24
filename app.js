@@ -35,6 +35,23 @@ var Plant = function() {
 	this.hash = this.name+this.ripetime+this.yield+this.color+this.shape;
 };
 
+var mutate = function(plant){
+	var decreaseRipe = Math.floor(Math.random()*2);
+	if(decreaseRipe === 0) plant.ripetime /= Math.floor(Math.random()*3)+1;
+	else plant.ripetime *= Math.floor(Math.random()*3)+1;
+	var changeColor = Math.floor(Math.random()*2);
+	if(changeColor === 0) plant.color = '#'+Math.floor(Math.random()*16777215).toString(16);
+	var changeYield = Math.floor(Math.random()*2);
+	if(changeYield === 0) plant.yield += Math.floor(Math.random()*51);
+	return plant;
+};
+
+/*var mutateFood = function(food){
+	var decreaseTime = Math.floor(Math.random()*2);
+	if(decreaseTime == 0) food.;
+	else
+};*/
+
 console.log("Farmland is running on port 8989");
 /*
    var farm = new Farm();
@@ -50,7 +67,7 @@ function plantFood(owner, tile, cb) {
 	var row = tile.row;
 	var col = tile.col;
 	var plant = farms[owner].farm[row][col].plant;
-	if(plant.hash != undefined) {
+	if(plant.hash !== undefined) {
 		return false;
 	}
 	var found = false;
@@ -71,8 +88,8 @@ function pickFood(owner, row, col) {
 		var found = false;
 		inventory.forEach(function(item) {
 			if(item.plant.hash == plant.hash) {
-				console.log(item.plant);
-				item.quantity++;
+				var seedYield = Math.floor(Math.random()*2)+1;
+				item.quantity += seedYield;
 				farms[owner].farm[row][col] = {row: row, col: col, plant: {}};
 				found = true;
 			}
