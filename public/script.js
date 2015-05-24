@@ -1,6 +1,7 @@
 var socket = io();
 
 var game = new Vue({
+<<<<<<< HEAD
   el: "#ui",
   data: {
     player: {},
@@ -38,10 +39,10 @@ var game = new Vue({
 });
 
 socket.emit("createFarm", game.name, game.pw, function(farm) {
-  if (farm) {
-    game.fillFarm(farm);
-  } else {
-    console.error("SOMEONE ELSE LOGGED IN DINGUS");
-  }
+	if (farm) {
+		game.fillFarm(farm);
+	} else {
+		console.error("SOMEONE ELSE LOGGED IN DINGUS");
+	}
 });
 game.$watch('player.farm', function(){console.log("updated")}, true);
