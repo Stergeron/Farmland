@@ -18,7 +18,7 @@
   </div>
   <div class="outer bottom">
   <div id="seeds">
-    <div class="seed" v-repeat="seed: player.inventory" v-on="click: plantingMode(seed)">{{quantity}}, {{hash}}</div>
+    <div class="seed" v-repeat="seed: player.inventory" v-on="click: plantingMode(seed)">{{seed.quantity}}, {{seed.hash}}</div>
   </div>
   </div>
 </div>
