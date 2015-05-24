@@ -45,17 +45,22 @@ console.log("Farmland is running on port 8989");
    grow()
    console.log(farms);*/
 
-function plant(owner, crop, row, col) {
-	if (farms[owner].farm[row][col].hash === undefined) {
-		plant.row = row;
-		plant.col = col;
-		farms[owner].farm[row][col] = crop;
-		return true;
-	}
+function plantFood(owner, food, row, col) {
+	var inventory = farms[owner].inventory;
+	var plant = farms[owner].farm[row][col];
+	inventory.forEach(function(item) {
+		if(food.hash == item.hash && item.quantity > 0) {
+			item.quantity--;
+			inventory.splice(inventory.indexOf(item), 1);
+			plant = item.plant;
+			console.log("Blooped");
+			return true;
+		}
+	});
 	return false;
 }
 
-function pick(owner, row, col) {
+function pickFood(owner, row, col) {
 	var plant = farms[owner].farm[row][col];
 	var inventory = farms[owner].inventory;
 	if (plant.hash != undefined && plant.age > plant.ripetime) {
@@ -73,7 +78,7 @@ function pick(owner, row, col) {
 	return false;
 }
 
-function grow() {
+function growFood() {
 	var keys = Object.keys(farms);
 	keys.forEach(function(key) {
 		if (farms[key]) {
@@ -88,7 +93,7 @@ function grow() {
 	});
 }
 
-setInterval(grow, 1000);
+setInterval(growFood, 1000);
 
 io.on('connection', function(socket) {
   var name = "";
@@ -102,10 +107,10 @@ io.on('connection', function(socket) {
       cb(false);
     }
   });
-  socket.on("plant", function(nm, crop, row, col, cb) {
-    cb(plant(nm, crop, row, col));
+  socket.on("plantFood", function(nm, crop, row, col, cb) {
+    cb(plantFood(nm, crop, row, col));
   });
-  socket.on("pick", function(nm, row, col, cb) {
-    cb(pick(nm, row, col));
+  socket.on("pickFood", function(nm, row, col, cb) {
+    cb(pickFood(nm, row, col));
   });
 });
