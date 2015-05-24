@@ -1,0 +1,59 @@
+{
+  "checksum": {
+    "previous": "bcb8658278dd5063a8ae612ce58f6a08d470acbf015cdd71beb92861dbefeb50",
+    "current": "bcb8658278dd5063a8ae612ce58f6a08d470acbf015cdd71beb92861dbefeb50"
+  },
+  "fonts": [
+    "fontcustom/fontcustom_bcb8658278dd5063a8ae612ce58f6a08.ttf",
+    "fontcustom/fontcustom_bcb8658278dd5063a8ae612ce58f6a08.svg",
+    "fontcustom/fontcustom_bcb8658278dd5063a8ae612ce58f6a08.woff",
+    "fontcustom/fontcustom_bcb8658278dd5063a8ae612ce58f6a08.eot"
+  ],
+  "glyphs": {
+    "carrot": {
+      "codepoint": 61698,
+      "source": "./icons/carrot.svg"
+    },
+    "peas": {
+      "codepoint": 61699,
+      "source": "./icons/peas.svg"
+    },
+    "tomato": {
+      "codepoint": 61700,
+      "source": "./icons/tomato.svg"
+    }
+  },
+  "options": {
+    "autowidth": false,
+    "config": false,
+    "css_selector": ".icon-{{glyph}}",
+    "debug": false,
+    "font_ascent": 448,
+    "font_descent": 64,
+    "font_design_size": 16,
+    "font_em": 512,
+    "font_name": "fontcustom",
+    "force": false,
+    "input": {
+      "templates": "./icons",
+      "vectors": "./icons"
+    },
+    "no_hash": false,
+    "output": {
+      "css": "fontcustom",
+      "fonts": "fontcustom",
+      "preview": "fontcustom"
+    },
+    "preprocessor_path": null,
+    "quiet": false,
+    "skip_first": false,
+    "templates": [
+      "css",
+      "preview"
+    ]
+  },
+  "templates": [
+    "fontcustom/fontcustom.css",
+    "fontcustom/fontcustom-preview.html"
+  ]
+}
