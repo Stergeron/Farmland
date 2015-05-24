@@ -13,8 +13,9 @@
     <div id="name">{{name}}'s farm</div></div>
     <div id="farm">
       <div class="row" v-repeat="row: player.farm">
-        <div class="plant" v-repeat="crop: row" v-on="click: plant(crop)">
-          <i v-style="color: crop.color" class="icon-{{(crop.age >= crop.ripetime) ? crop.name : 'seeds'}}"></i>
+        <div class="plant" v-repeat="crop: row" v-on="click: touch(crop)">
+          <i v-show="(crop.age >= crop.ripetime)" v-style="color: crop.color" class="icon-{{crop.name}}"></i>
+          <i v-show="(crop.age < crop.ripetime)" v-style="color: crop.color" class="icon-seed"></i>
         </div>
       </div>
   </div>

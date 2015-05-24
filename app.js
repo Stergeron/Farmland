@@ -63,7 +63,7 @@ function plantFood(owner, food, row, col) {
 }
 
 function pickFood(owner, row, col) {
-	var plant = farms[owner].farm[row][col];
+	var plant = farms[owner].farm[row][col].plant;
 	var inventory = farms[owner].inventory;
 	if (plant.hash != undefined && plant.age > plant.ripetime) {
 		var found = false;
@@ -83,7 +83,7 @@ function pickFood(owner, row, col) {
 	return false;
 }
 
-function growFood() {
+/*function growFood() {
 	var keys = Object.keys(farms);
 	keys.forEach(function(key) {
 		if (farms[key]) {
@@ -96,9 +96,8 @@ function growFood() {
 			});
 		}
 	});
-}
+}*/
 
-setInterval(growFood, 1000);
 
 io.on('connection', function(socket) {
   var name = "";
@@ -113,6 +112,7 @@ io.on('connection', function(socket) {
 		} else {
       cb(false);
     }
+		setInterval(growFood, 1000);
   });
   socket.on("plantFood", function(nm, crop, row, col, cb) {
     cb(plantFood(nm, crop, row, col));
@@ -120,4 +120,14 @@ io.on('connection', function(socket) {
   socket.on("pickFood", function(nm, row, col, cb) {
     cb(pickFood(nm, row, col));
   });
+	var growFood = function(){
+		farms[name].farm.forEach(function(row){
+			row.forEach(function(plant){
+				if(plant.age !== undefined){
+					plant.age++;
+					socket.emit("update", farms[name]);
+				}
+			});
+		});
+	};
 });
