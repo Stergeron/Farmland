@@ -56,9 +56,18 @@ function plant(owner, plant, row, col) {
 }
 
 function pick(owner, row, col) {
-	if (farms[owner].farm[row][col].hash != undefined && farms[owner].farm[row][col].age > farms[owner].farm[row][col].ripetime) {
-		farms[owner].inventory.push(farms[owner].farm[row][col]);
-		farms[owner].farm[row][col] = {row: row, col: col};
+	var plant = farms[owner].farm[row][col];
+	var inventory = farms[owner].inventory;
+	if (plant.hash != undefined && plant.age > plant.ripetime) {
+		inventory.forEach(function(item) {
+			if(item.hash == plant.hash) {
+				item.quantity++;
+				plant = {row: row, col: col};
+				return true;
+			}
+		});
+		inventory.push({plant: plant, quantity: 3});
+		plant = {row: row, col: col};
 		return true;
 	}
 	return false;
