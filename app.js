@@ -11,7 +11,7 @@ var io = require('socket.io')(server);
 
 var farms = {};
 
-var Farm = function(ps) {
+var Farm = function(pw) {
   this.gold = 100;
   this.farm = [];
   for (var i = 0; i < 5; i++) {
