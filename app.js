@@ -22,7 +22,7 @@ var Farm = function(pw) {
   }
   this.inventory = [];
   this.inventory.push({plant: new Plant(), quantity: 3});
-  this.password = ps;
+  this.password = pw;
 };
 
 var Plant = function() {
