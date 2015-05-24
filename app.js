@@ -48,31 +48,35 @@ console.log("Farmland is running on port 8989");
 function plantFood(owner, food, row, col) {
 	var inventory = farms[owner].inventory;
 	var plant = farms[owner].farm[row][col];
+	var found = false;
 	inventory.forEach(function(item) {
 		if(food.hash == item.hash && item.quantity > 0) {
 			item.quantity--;
 			inventory.splice(inventory.indexOf(item), 1);
 			plant = item.plant;
 			console.log("Blooped");
-			return true;
+			found = true;
 		}
 	});
-	return false;
+	return found;
 }
 
 function pickFood(owner, row, col) {
 	var plant = farms[owner].farm[row][col];
 	var inventory = farms[owner].inventory;
 	if (plant.hash != undefined && plant.age > plant.ripetime) {
+		var found = false;
 		inventory.forEach(function(item) {
 			if(item.hash == plant.hash) {
 				item.quantity++;
 				plant = {row: row, col: col};
-				return true;
+				found = true;
 			}
 		});
-		inventory.push({plant: plant, quantity: 3});
-		plant = {row: row, col: col};
+		if(!found) {
+			inventory.push({plant: plant, quantity: 3});
+			plant = {row: row, col: col};
+		}
 		return true;
 	}
 	return false;
