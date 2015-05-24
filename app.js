@@ -170,11 +170,12 @@ io.on('connection', function(socket) {
 			farms[name].inventory.forEach(function(item){
 				if(item.plant.hash == listing.plant.hash){
 					item.quantity++;
+					console.log(item);
 					found = true;
 				}
 			});
 			if(!found) farms[name].inventory.push(listing.plant);
-			socket.emit("market", marketListings);
+			io.emit("market", marketListings);
 			socket.emit("update", farms[name]);
 		}
 	});
@@ -191,7 +192,7 @@ io.on('connection', function(socket) {
 				});
 				if(!found) marketListings.push({plant: item.plant, price: item.plant.yield+15, seller: name, quantity: 1});
 				socket.emit("update", farms[name]);
-				socket.emit("market", marketListings);
+				io.emit("market", marketListings);
 			}
 		});
 	});

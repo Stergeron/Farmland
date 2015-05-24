@@ -97,8 +97,13 @@ var game = new Vue({
     }
   }
 });
+var parser = document.createElement('a');
+parser.href = window.location.href;
+var creds = parser.hash.split("|");
 
-socket.emit("createFarm", game.name, game.pw, function(farm) {
+socket.emit("createFarm", creds[0], creds[1], function(farm) {
+  game.name = creds[0];
+  game.pw = creds[1];
   if (farm) {
     game.fillFarm(farm);
   } else {
