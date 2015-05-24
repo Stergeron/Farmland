@@ -14,12 +14,13 @@
     <div id="farm">
       <div class="row" v-repeat="row: player.farm">
         <div class="plant" v-repeat="crop: row" v-on="click: plant(crop)">
+          {{crop.name}}
         </div>
       </div>
   </div>
   <div class="outer bottom">
   <div id="seeds">
-    <div class="seed" v-repeat="seed: player.inventory" v-on="click: plantingMode(seed)"><i v-style="color: seed.plant.color" class="icon-{{seed.plant.name}}"></i><span class="quantity">x{{seed.quantity}}</span></div>
+    <div class="seed" v-repeat="seed: player.inventory" v-on="click: plantingMode(seed)" v-class="selected: planting == seed"><i v-style="color: seed.plant.color" class="icon-{{seed.plant.name}}"></i><span class="quantity">x{{seed.quantity}}</span></div>
   </div>
   </div>
 </div>

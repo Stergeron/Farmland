@@ -45,11 +45,11 @@ console.log("Farmland is running on port 8989");
    grow()
    console.log(farms);*/
 
-function plant(owner, plant, row, col) {
-	if (farms[owner].farm[row][col].hash != undefined) {
+function plant(owner, crop, row, col) {
+	if (farms[owner].farm[row][col].hash === undefined) {
 		plant.row = row;
 		plant.col = col;
-		farms[owner].farm[row][col] = plant;
+		farms[owner].farm[row][col] = crop;
 		return true;
 	}
 	return false;
@@ -93,8 +93,8 @@ io.on('connection', function(socket) {
       cb(false);
     }
   });
-  socket.on("plant", function(nm, row, col, cb) {
-    cb(plant(nm, row, col));
+  socket.on("plant", function(nm, crop, row, col, cb) {
+    cb(plant(nm, crop, row, col));
   });
   socket.on("pick", function(nm, row, col, cb) {
     cb(pick(nm, row, col));

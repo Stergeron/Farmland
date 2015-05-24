@@ -60,6 +60,9 @@ body {
   height: 75px;
   border: 1px solid black;
 }
+.selected {
+  background-color: #fff4cd;
+}
 .quantity {
   position: absolute;
   bottom: 0;

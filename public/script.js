@@ -13,12 +13,15 @@ var game = new Vue({
       this.planting = seed;
     },
     plant: function(tile) {
-      socket.emit("plant", this.name, this.planting, tile.row, tile.col, function(cb) {
-        if (cb) {
-          this.player.farm[tile.row][tile.col] = this.planting;
-          this.player.inventory[this.player.inventory.indexOf(this.planting)].quantity--;
-        }
-      });
+      if (this.planting !== "") {
+        var _this = this;
+        socket.emit("plant", this.name, this.planting.plant, tile.row, tile.col, function(cb) {
+          if (cb) {
+            _this.player.farm[tile.row][tile.col] = _this.planting.plant;
+            _this.player.inventory[_this.player.inventory.indexOf(_this.planting)].quantity--;
+          }
+        });
+      }
     },
     fillFarm: function(farm) {
       this.player = farm;
