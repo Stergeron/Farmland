@@ -57,21 +57,7 @@ var mutatePlant = function(plant, attrmod) {
   return plant;
 };
 
-/*var mutateFood = function(food){
-	var decreaseTime = Math.floor(Math.random()*2);
-	if(decreaseTime == 0) food.;
-	else
-};*/
-
 console.log("Farmland is running on port 8989");
-/*
-   var farm = new Farm();
-   farms["William"] = farm;
-   console.log(new Farm());
-   plant("William", new Plant(), 3, 3);
-   pick("William", 3, 3);
-   grow()
-   console.log(farms);*/
 
 function plantFood(owner, tile, cb) {
   var inventory = farms[owner].inventory;
