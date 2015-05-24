@@ -83,10 +83,10 @@ setInterval(grow, 1000);
 
 io.on('connection', function(socket) {
   var name = "";
-  socket.on("createFarm", function(nm, ps, cb) {
+  socket.on("createFarm", function(nm, pw, cb) {
     name = nm;
-    if (farms[nm] === undefined || farms[nm].password == ps) {
-      var farm = new Farm(ps, 7, 7);
+    if (farms[nm] === undefined || farms[nm].password == pw) {
+      var farm = new Farm(pw, 7, 7);
       farms[nm] = farm;
       cb(farm);
     } else {
