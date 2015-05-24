@@ -10,7 +10,12 @@
 <body>
 <div id="inventorybtn" v-on="click: toggleInventory()">{{showInv ? "Menu" : "Inventory"}}</div>
   <div id="inventory" v-show="showInv">
-    POOP
+    <h1>Inventory</h1>
+    <ul>
+      <li v-repeat="item: player.inventory"> <i v-style="color: item.plant.color" class="icon-{{item.plant.name}}"></i>
+        Ripening time: <b>{{item.plant.ripetime}}</b>s ~~ Minimum Yield: <b>{{item.plant.yield}}g</b>
+      </li>
+    </ul>
   </div>
   <div id="ui" v-show="!showInv">
     <div class="outer">

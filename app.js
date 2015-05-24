@@ -29,7 +29,7 @@ var Plant = function() {
 	this.name = "carrot";
 	this.age = 0;
 	this.ripetime = 10;
-	this.yield = 0;
+	this.yield = 10;
 	this.color = "#FF0000";
 	this.shape = 0;
 	this.hash = this.name+this.ripetime+this.yield+this.color+this.shape;
@@ -39,8 +39,8 @@ var mutatePlant = function(plant){
 	var plantTypes = ["tomato", "carrot", "pickle", "peas"];
 	plant.age = 0;
 	var decreaseRipe = Math.floor(Math.random()*2);
-	if(decreaseRipe === 0) plant.ripetime /= Math.floor(Math.random()*3)+1;
-	else plant.ripetime *= Math.floor(Math.random()*3)+1;
+	if(decreaseRipe === 0) plant.ripetime /= Math.floor(Math.random()*2)+1;
+	else plant.ripetime *= Math.floor(Math.random()*5)+1;
 	plant.color = '#'+Math.floor(Math.random()*16777215).toString(16);
 	var changeYield = Math.floor(Math.random()*2);
 	if(changeYield === 0) plant.yield += Math.floor(Math.random()*51);

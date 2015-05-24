@@ -8,6 +8,13 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
+h1 {
+  text-align: center;
+}
+li i {
+  display: inline-block;
+  position: relative;
+}
 .container {
   border: 1px solid black;
   width: 100%;
@@ -18,6 +25,7 @@ body {
   height: 100%;
   position: absolute;
   background-color: #c1c1c1;
+  font-family: Lucida Grande;
 }
 #name {
   padding: 5px;
@@ -94,4 +102,7 @@ body {
 i {
   font-size: 70px;
   position: absolute;
+}
+ul {
+  list-style-type: none;
 }
