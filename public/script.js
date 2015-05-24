@@ -1,16 +1,20 @@
 var socket = io();
 
 var game = new Vue({
-  el: "#ui",
+  el: "body",
   data: {
     player: {},
     planting: "",
     name: "bob",
-    pw: "blop"
+    pw: "blop",
+    showInv: false
   },
   methods: {
     plantingMode: function(seed) {
       this.planting = seed;
+    },
+    toggleInventory: function(){
+      this.showInv = !this.showInv;
     },
     touch: function(tile) {
       console.log(tile);
