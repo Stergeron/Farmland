@@ -44,7 +44,7 @@ var Plant = function() {
 };
 
 var mutatePlant = function(plant, attrmod) {
-	var plantTypes = ["tomato", "carrot", "pickle", "peas"];
+	var plantTypes = ["tomato", "carrot", "pickle", "peas", "pears", "strawberries", "apple"];
 	plant.age = 0;
 	var decreaseRipe = Math.floor(Math.random() * 2);
 	if (decreaseRipe === 0 && attrmod) plant.ripetime /= Math.floor(Math.random() * 2) + 1;
@@ -70,13 +70,14 @@ function plantFood(owner, tile, cb) {
 	}
 	var found = false;
 	inventory.forEach(function(item) {
+		var newitem = JSON.parse(JSON.stringify(item));
 		if (tile.plant.hash == item.plant.hash && item.quantity > 0) {
 			item.quantity--;
-			item.plant.age = 0;
+			newitem.plant.age = 0;
 			farms[owner].farm[row][col] = {
 				row: row,
 				col: col,
-				plant: item.plant
+				plant: newitem.plant
 			};
 			found = true;
 		}
@@ -234,17 +235,17 @@ io.on('connection', function(socket) {
 		console.log(farms[name].farm);
 		socket.emit("update", farms[name]);
 	});
-var growFood = function() {
-	farms[name].farm.forEach(function(row) {
-		row.forEach(function(tile) {
-			if (tile.plant.age !== undefined) {
-				tile.plant.age++;
-				socket.emit("update", farms[name]);
-			}
+	var growFood = function() {
+		farms[name].farm.forEach(function(row) {
+			row.forEach(function(tile) {
+				if (tile.plant.age !== undefined) {
+					tile.plant.age++;
+					socket.emit("update", farms[name]);
+				}
+			});
 		});
+	};
+	socket.on("disconnect", function() {
+		clearInterval(interval);
 	});
-};
-socket.on("disconnect", function() {
-	clearInterval(interval);
-});
 });

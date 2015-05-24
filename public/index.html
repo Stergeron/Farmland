@@ -8,6 +8,9 @@
   <link href="fontcustom/fontcustom.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+  <audio autoplay loop>
+      <source src="kenneth_macleod_whiskey.mp3">
+</audio>
 <div id="inventorybtn" v-on="click: toggleInventory()">{{showInv ? "Menu" : "Inventory"}}</div>
   <div class="menu" v-show="(showInv && !showMarket)">
     <div id="goldshow">{{player.gold}}g</div>

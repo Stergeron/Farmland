@@ -1,18 +1,26 @@
 {
   "checksum": {
-    "previous": "2d56f07bf9f8930901deede89f6838afcf3d6cb9d3fd7bd22e0ce0bdda507b1f",
-    "current": "2d56f07bf9f8930901deede89f6838afcf3d6cb9d3fd7bd22e0ce0bdda507b1f"
+    "previous": "c7ab486314b46297b3d373a5f11b7e391f03187cf624e69ceccfcf8d8db377c2",
+    "current": "c7ab486314b46297b3d373a5f11b7e391f03187cf624e69ceccfcf8d8db377c2"
   },
   "fonts": [
-    "fontcustom/fontcustom_2d56f07bf9f8930901deede89f6838af.ttf",
-    "fontcustom/fontcustom_2d56f07bf9f8930901deede89f6838af.svg",
-    "fontcustom/fontcustom_2d56f07bf9f8930901deede89f6838af.woff",
-    "fontcustom/fontcustom_2d56f07bf9f8930901deede89f6838af.eot"
+    "fontcustom/fontcustom_c7ab486314b46297b3d373a5f11b7e39.ttf",
+    "fontcustom/fontcustom_c7ab486314b46297b3d373a5f11b7e39.svg",
+    "fontcustom/fontcustom_c7ab486314b46297b3d373a5f11b7e39.woff",
+    "fontcustom/fontcustom_c7ab486314b46297b3d373a5f11b7e39.eot"
   ],
   "glyphs": {
+    "apple": {
+      "codepoint": 61706,
+      "source": "./icons/apple.svg"
+    },
     "carrot": {
       "codepoint": 61698,
       "source": "./icons/carrot.svg"
+    },
+    "pears": {
+      "codepoint": 61704,
+      "source": "./icons/pears.svg"
     },
     "peas": {
       "codepoint": 61699,
@@ -25,6 +33,10 @@
     "seed": {
       "codepoint": 61701,
       "source": "./icons/seed.svg"
+    },
+    "strawberries": {
+      "codepoint": 61705,
+      "source": "./icons/strawberries.svg"
     },
     "tomato": {
       "codepoint": 61700,
