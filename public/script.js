@@ -5,26 +5,31 @@ var game = new Vue({
   data: {
     player: {},
     planting: "",
-    name: "bob"
+    name: "bob",
+    pw: "blop"
   },
   methods: {
-    plantingMode: function(seed){
+    plantingMode: function(seed) {
       this.planting = seed;
     },
-    plant: {
-
+    plant: function(tile) {
+      socket.emit("plant", this.name, this.planting, tile.row, tile.col, function(cb) {
+        if (cb) {
+          this.player.farm[tile.row][tile.col] = this.planting;
+          this.player.inventory[this.player.inventory.indexOf(this.planting)].quantity--;
+        }
+      });
     },
-    fillFarm: function(farm){
+    fillFarm: function(farm) {
       this.player = farm;
     }
   }
 });
 
-socket.emit("createFarm", game.name, "blop", function(farm){
-  if(farm){
+socket.emit("createFarm", game.name, game.pw, function(farm) {
+  if (farm) {
     game.fillFarm(farm);
-  }
-  else {
+  } else {
     console.error("SOMEONE ELSE LOGGED IN DINGUS");
   }
 });

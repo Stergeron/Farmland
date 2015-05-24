@@ -5,6 +5,7 @@
   <script src="bower_components/vue/dist/vue.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <link href="style.css" rel="stylesheet" type="text/css"/>
+  <link href="fontcustom/fontcustom.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <div id="ui">
@@ -12,13 +13,13 @@
     <div id="name">{{name}}'s farm</div></div>
     <div id="farm">
       <div class="row" v-repeat="row: player.farm">
-        <div class="plant" v-repeat="crop: row" v-on="click: plant()">
+        <div class="plant" v-repeat="crop: row" v-on="click: plant(crop)">
         </div>
       </div>
   </div>
   <div class="outer bottom">
   <div id="seeds">
-    <div class="seed" v-repeat="seed: player.inventory" v-on="click: plantingMode(seed)">{{seed.quantity}}, {{seed.hash}}</div>
+    <div class="seed" v-repeat="seed: player.inventory" v-on="click: plantingMode(seed)"><i v-style="color: seed.plant.color" class="icon-carrot"></i><span class="quantity">x{{seed.quantity}}</span></div>
   </div>
   </div>
 </div>
