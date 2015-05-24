@@ -135,3 +135,9 @@ ul {
 .marketoggle:hover {
   background-color: #dcdcdc;
 }
+.center {
+  position: absolute;
+  left: -100px;
+  width: 253px;
+  height: 85px;
+}
