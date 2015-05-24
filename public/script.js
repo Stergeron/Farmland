@@ -29,7 +29,7 @@ var game = new Vue({
             _this.player.farm[tile.row][tile.col].name = _this.planting.plant.name;
             _this.player.farm[tile.row][tile.col].ripetime = _this.planting.plant.ripetime;
             _this.player.farm[tile.row][tile.col].hash = _this.planting.plant.hash;
-            _this.player.farm[tile.row][tile.col].age = _this.planting.plant.age;
+            _this.player.farm[tile.row][tile.col].age = 0;
 			_this.player.inventory.forEach(function(item) {
 				if(item.plant == _this.planting.plant) {
 					item.quantity--;

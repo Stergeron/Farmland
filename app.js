@@ -35,14 +35,15 @@ var Plant = function() {
 	this.hash = this.name+this.ripetime+this.yield+this.color+this.shape;
 };
 
-var mutate = function(plant){
+var mutatePlant = function(plant){
+	plant.age = 0;
 	var decreaseRipe = Math.floor(Math.random()*2);
 	if(decreaseRipe === 0) plant.ripetime /= Math.floor(Math.random()*3)+1;
 	else plant.ripetime *= Math.floor(Math.random()*3)+1;
-	var changeColor = Math.floor(Math.random()*2);
-	if(changeColor === 0) plant.color = '#'+Math.floor(Math.random()*16777215).toString(16);
+	plant.color = '#'+Math.floor(Math.random()*16777215).toString(16);
 	var changeYield = Math.floor(Math.random()*2);
 	if(changeYield === 0) plant.yield += Math.floor(Math.random()*51);
+	plant.hash = plant.name+plant.ripetime+plant.yield+plant.color+plant.shape;
 	return plant;
 };
 
@@ -90,7 +91,12 @@ function pickFood(owner, row, col) {
 		inventory.forEach(function(item) {
 			if(item.plant.hash == plant.hash) {
 				var seedYield = Math.floor(Math.random()*2)+1;
-				item.quantity += seedYield;
+				var mutate = Math.floor(Math.random()*2);
+				if(mutate === 0) item.quantity += seedYield;
+				else {
+					var newitem = mutatePlant(JSON.parse(JSON.stringify(item.plant)));
+					inventory.push({plant: newitem, quantity: seedYield});
+				}
 				farms[owner].farm[row][col] = {row: row, col: col, plant: {}};
 				found = true;
 			}
