@@ -45,7 +45,7 @@ var mutatePlant = function(plant){
 	var changeYield = Math.floor(Math.random()*2);
 	if(changeYield === 0) plant.yield += Math.floor(Math.random()*51);
 	plant.hash = plant.name+plant.ripetime+plant.yield+plant.color+plant.shape;
-	var plantType = Math.floor(Math.random()*5);
+	var plantType = Math.floor(Math.random()*4);
 	plant.name = plantTypes[plantType];
 	return plant;
 };
