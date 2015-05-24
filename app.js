@@ -131,7 +131,7 @@ io.on('connection', function(socket) {
   socket.on("createFarm", function(nm, pw, cb) {
     name = nm;
     if (farms[nm] === undefined) {
-      var farm = new Farm(pw, 7, 7);
+      var farm = new Farm(pw, 2, 2);
       farms[nm] = farm;
       cb(farm);
     } else if (farms[nm].password == pw) {
@@ -197,7 +197,24 @@ io.on('connection', function(socket) {
 		});
 	});
 	socket.on("buyland", function(){
-
+		if(farms[name].gold >= 30){
+			farms[name].gold -= 30;
+			var newlength = {
+				cols: farms[name].farm[0].length+1,
+				rows: farms[name].farm.length
+			};
+      farms[name].farm.push([]);
+			var rowfit = false;
+			var count = 0;
+			while(!rowfit){
+				var row = farms[name].farm[count];
+				if(row.length < newlength.cols) row.push({row: count, col: row.length-1, plant: {}});
+				if(count == newlength.rows-1 && row.length == newlength.cols) rowfit = true;
+        count++;
+			}
+      console.log(farms[name].farm);
+			socket.emit("update", farms[name]);
+		}
 	});
   var growFood = function() {
     farms[name].farm.forEach(function(row) {
