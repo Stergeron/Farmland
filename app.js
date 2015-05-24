@@ -48,7 +48,7 @@ var mutatePlant = function(plant, attrmod) {
 	plant.age = 0;
 	var decreaseRipe = Math.floor(Math.random() * 2);
 	if (decreaseRipe === 0 && attrmod) plant.ripetime /= Math.floor(Math.random() * 2) + 1;
-	else plant.ripetime *= Math.floor(Math.random() * 5) + 1;
+	else plant.ripetime *= Math.floor(Math.random() * 3) + 1;
 	plant.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
 	var changeYield = Math.floor(Math.random() * 2);
 	if (changeYield === 0 && attrmod) plant.yield += Math.floor(Math.random() * 51);
