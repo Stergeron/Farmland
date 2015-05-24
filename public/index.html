@@ -43,7 +43,7 @@
   </div>
   <div class="outer bottom">
   <div id="seeds">
-    <div class="seed" v-repeat="seed: player.inventory" v-show="seed.quantity > 0" v-on="click: plantingMode(seed)" v-class="selected: planting == seed"><i v-style="color: seed.plant.color" class="icon-{{seed.plant.name}}"></i><span class="quantity">x{{seed.quantity}}</span></div>
+    <div class="seed" v-repeat="seed: player.inventory" v-show="seed.quantity > 0" v-on="click: plantingMode($index)" v-class="selected: planting == seed"><i v-style="color: seed.plant.color" class="icon-{{seed.plant.name}}"></i><span class="quantity">x{{seed.quantity}}</span></div>
   </div>
   </div>
 </div>
