@@ -162,7 +162,7 @@ io.on('connection', function(socket) {
 	});
 	socket.on("buy", function(index){
 		var listing = marketListings[index];
-		if(listing !== undefined && listing.quantity > 0){
+		if(listing !== undefined && farms[name].gold > listing.price && listing.quantity > 0){
 			listing.quantity--;
 			farms[listing.seller].gold += Math.abs(listing.price);
 			farms[name].gold -= Math.abs(listing.price);
@@ -177,7 +177,9 @@ io.on('connection', function(socket) {
 			if(!found) farms[name].inventory.push({plant:listing.plant, quantity:1});
 			io.emit("market", marketListings);
 			socket.emit("update", farms[name]);
+			return true;
 		}
+		return false;
 	});
 	socket.on("market", function(item){
 		farms[name].inventory.forEach(function(i){
