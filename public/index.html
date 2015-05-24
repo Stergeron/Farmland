@@ -10,10 +10,11 @@
 <body>
 <div id="inventorybtn" v-on="click: toggleInventory()">{{showInv ? "Menu" : "Inventory"}}</div>
   <div id="inventory" v-show="showInv">
+    <div id="goldshow">{{player.gold}}g</div>
     <h1>Inventory</h1>
     <ul>
       <li v-repeat="item: player.inventory" v-show="(item.quantity > 0)"> <i v-style="color: item.plant.color" class="icon-{{item.plant.name}}"></i>
-        Ripening time: <b>{{item.plant.ripetime}}</b>s ~~ Minimum Yield: <b>{{item.plant.yield}}g</b> ~~ Quantity: <b>{{item.quantity}}</b> <div class="sqbtn">S</div>
+        Ripening time: <b>{{item.plant.ripetime}}</b>s ~~ Minimum Yield: <b>{{item.plant.yield}}g</b> ~~ Quantity: <b>{{item.quantity}}</b> <div class="sqbtn" v-on="click: sell(item)">S (+{{item.plant.yield}})</div><div class="sqbtn" v-on="click: market(item)">M (+{{item.plant.yield+20}})</div>
       </li>
     </ul>
   </div>

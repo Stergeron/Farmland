@@ -10,6 +10,12 @@ var game = new Vue({
     showInv: false
   },
   methods: {
+    sell: function(item){
+      socket.emit("sell", item);
+    },
+    market: function(item){
+
+    },
     plantingMode: function(seed) {
       this.planting = seed;
     },

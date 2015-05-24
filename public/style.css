@@ -13,6 +13,7 @@ h1 {
 }
 li i {
   display: inline-block;
+  margin: 0px;
   position: relative;
 }
 #inventory {
@@ -37,6 +38,14 @@ li i {
   background-color: #FFFFFF;
   font-family: Arial;
   padding: 10px;
+}
+#goldshow {
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: #fff700;
+  padding: 10px;
+  border: 1px solid black;
 }
 #farm {
   white-space: nowrap;
@@ -102,6 +111,7 @@ ul {
   list-style-type: none;
 }
 .sqbtn {
+  margin: 5px;
   display: inline-block;
   padding: 5px;
   border: 2px solid black;
