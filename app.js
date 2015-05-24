@@ -49,7 +49,7 @@ function plantFood(owner, food, row, col) {
 	var inventory = farms[owner].inventory;
 	var plant = farms[owner].farm[row][col];
 	inventory.forEach(function(item) {
-		if(food.hash == item.hash && item.quantity > 0) {
+		if(food.hash == item.plant.hash && item.quantity > 0) {
 			item.quantity--;
 			inventory.splice(inventory.indexOf(item), 1);
 			plant = item.plant;
