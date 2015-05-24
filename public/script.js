@@ -1,7 +1,6 @@
 var socket = io();
 
 var game = new Vue({
-<<<<<<< HEAD
   el: "#ui",
   data: {
     player: {},
