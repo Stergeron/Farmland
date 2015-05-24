@@ -74,6 +74,7 @@ function plantFood(owner, tile, cb) {
 	inventory.forEach(function(item) {
 		if(tile.plant.hash == item.plant.hash && item.quantity > 0) {
 			item.quantity--;
+			item.plant.age = 0;
 			farms[owner].farm[row][col] = {row: row, col: col, plant: item.plant};
 			found = true;
 		}
@@ -95,6 +96,7 @@ function pickFood(owner, row, col) {
 			}
 		});
 		if(!found) {
+			plant.age = 0;
 			inventory.push({plant: plant, quantity: 3});
 			plant = {row: row, col: col, plant: {}};
 		}
