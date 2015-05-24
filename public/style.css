@@ -35,6 +35,9 @@ body {
   border-right: 1px solid #b1b1b1;
   border-bottom: 1px solid #b1b1b1;
 }
+.plant:hover {
+  background-color: #ccffca;
+}
 .outer {
   position: fixed;
   left: 50%;
@@ -59,6 +62,9 @@ body {
   width: 75px;
   height: 75px;
   border: 1px solid black;
+}
+.seed:hover {
+  background-color: #ffe5b7;
 }
 .selected {
   background-color: #fff4cd;

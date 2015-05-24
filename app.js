@@ -17,7 +17,7 @@ var Farm = function(pw, row, col) {
 	for (var i = 0; i < row; i++) {
 		this.farm.push([]);
 		for (var j = 0; j < col; j++) {
-			this.farm[i].push({row:i, col:j});
+			this.farm[i].push({row: i, col: j, name: ""});
 		}
 	}
 	this.inventory = [];
