@@ -36,6 +36,7 @@ var Plant = function() {
 };
 
 var mutatePlant = function(plant){
+	var plantTypes = ["tomato", "carrot", "pickle", "peas"];
 	plant.age = 0;
 	var decreaseRipe = Math.floor(Math.random()*2);
 	if(decreaseRipe === 0) plant.ripetime /= Math.floor(Math.random()*3)+1;
@@ -44,6 +45,8 @@ var mutatePlant = function(plant){
 	var changeYield = Math.floor(Math.random()*2);
 	if(changeYield === 0) plant.yield += Math.floor(Math.random()*51);
 	plant.hash = plant.name+plant.ripetime+plant.yield+plant.color+plant.shape;
+	var plantType = Math.floor(Math.random()*5);
+	plant.name = plantTypes[plantType];
 	return plant;
 };
 
