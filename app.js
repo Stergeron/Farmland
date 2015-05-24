@@ -52,7 +52,7 @@ var mutatePlant = function(plant, attrmod) {
 	plant.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
 	var changeYield = Math.floor(Math.random() * 2);
 	if (changeYield === 0 && attrmod) plant.yield += Math.floor(Math.random() * 51);
-	var plantType = Math.floor(Math.random() * plantTypes.length-1);
+	var plantType = Math.floor(Math.random() * plantTypes.length);
 	plant.name = plantTypes[plantType];
 	plant.hash = plant.name + plant.ripetime + plant.yield + plant.color + plant.shape;
 	return plant;
