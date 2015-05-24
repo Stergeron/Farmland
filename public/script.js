@@ -7,27 +7,39 @@ var game = new Vue({
 		planting: -1,
 		name: "bob",
 		pw: "blop",
-		showInv: false
+		showInv: false,
+		showMarket: false,
+		marketListings: []
 	},
 	methods: {
 		sell: function(item){
 			socket.emit("sell", item);
 		},
+		buy: function(item){
+			socket.emit("buy", this.marketListings. indexOf(item));
+		},
 		market: function(item){
-
+			socket.emit("market", item);
+		},
+		marketoggle: function() {
+			this.showMarket = !this.showMarket;
+			this.showInv = !this.showInv;
 		},
 		plantingMode: function(index) {
 			this.planting = index;
 		},
 		toggleInventory: function(){
-			this.showInv = !this.showInv;
+			if(this.showMarket) {
+				this.showMarket = false;
+				this.showInv = false;
+			} else {
+				this.showInv = !this.showInv;
+			}
 		},
 		touch: function(tile) {
 			if (this.planting == -1) {
-				console.log("Picking");
 				this.pick(tile);
 			} else {
-				console.log("Planting");
 				this.plant(tile);
 			}
 		},
@@ -69,6 +81,9 @@ var game = new Vue({
 		},
 		fillFarm: function(farm) {
 			this.player = farm;
+		},
+		fillMarket: function(mark){
+			this.marketListings = mark;
 		}
 	},
 	filters: {
@@ -88,4 +103,7 @@ socket.emit("createFarm", game.name, game.pw, function(farm) {
 });
 socket.on("update", function(data) {
 	game.fillFarm(data);
+});
+socket.on("market", function(data){
+  game.fillMarket(data);
 });
