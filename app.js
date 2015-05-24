@@ -174,7 +174,7 @@ io.on('connection', function(socket) {
 					found = true;
 				}
 			});
-			if(!found) farms[name].inventory.push(listing.plant);
+			if(!found) farms[name].inventory.push({plant:listing.plant, quantity:1});
 			io.emit("market", marketListings);
 			socket.emit("update", farms[name]);
 		}
