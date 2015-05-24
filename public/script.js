@@ -36,6 +36,7 @@ var game = new Vue({
 				}
 			});
             if (_this.planting.quantity < 1) _this.planting = "";
+			location.reload();
           }
         });
       }
