@@ -27,7 +27,7 @@
         <i v-style="color: item.plant.color" class="icon-{{item.plant.name}}"></i> Seller: <b>{{item.seller}}</b> ~~ Ripening time: <b>{{item.plant.ripetime}}</b>s ~~ Minimum Yield: <b>{{item.plant.yield}}</b> ~~ Quantity: <b>{{item.quantity}}</b> <div class="sqbtn" v-on="click: buy(item)">B (-{{item.price}})</div>
       </li>
     </ul>
-    <div class="marketoggle" v-on="click: buy('land')">Buy Land (-30)</div>
+	<div class="marketoggle" v-on="click: buy('land')">Buy Land {{landprice}}</div>
     <div class="marketoggle" v-on="click: marketoggle()">Inventory</div>
   </div>
   <div id="ui" v-show="(!showInv && !showMarket)">

@@ -9,15 +9,19 @@ var game = new Vue({
 		pw: "blop",
 		showInv: false,
 		showMarket: false,
-		marketListings: []
+		marketListings: [],
+		landprice: 30
 	},
 	methods: {
 		sell: function(item){
 			socket.emit("sell", item);
 		},
 		buy: function(item){
-			if(item == "land") socket.emit("buyland");
-			else socket.emit("buy", this.marketListings. indexOf(item));
+			var _this = this;
+			if(item == "land") socket.emit("buyland", function(price) {
+				_this.landprice = price;
+			});
+			else socket.emit("buy", this.marketListings, indexOf(item));
 		},
 		market: function(item){
 			socket.emit("market", item);
