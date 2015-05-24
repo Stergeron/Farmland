@@ -19,12 +19,19 @@ var game = new Vue({
           if (cb) {
             _this.player.farm[tile.row][tile.col] = _this.planting.plant;
             _this.player.inventory[_this.player.inventory.indexOf(_this.planting)].quantity--;
+            if(_this.planting.quantity < 1) _this.planting = "";
           }
         });
       }
     },
     fillFarm: function(farm) {
       this.player = farm;
+    }
+  },
+  filters: {
+    debug: function(val){
+      console.log(val.name);
+      return true;
     }
   }
 });
@@ -36,3 +43,4 @@ socket.emit("createFarm", game.name, game.pw, function(farm) {
     console.error("SOMEONE ELSE LOGGED IN DINGUS");
   }
 });
+game.$watch('player.farm', function(){console.log("updated")}, true);
