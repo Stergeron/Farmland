@@ -94,7 +94,7 @@ function pickFood(owner, row, col) {
 		inventory.forEach(function(item) {
 			if(item.plant.hash == plant.hash) {
 				var seedYield = Math.floor(Math.random()*2)+1;
-				var mutate = Math.floor(Math.random()*2);
+				var mutate = Math.floor(Math.random()*10);
 				if(mutate === 0) item.quantity += seedYield;
 				else {
 					var newitem = mutatePlant(JSON.parse(JSON.stringify(item.plant)));
