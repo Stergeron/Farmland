@@ -4,7 +4,7 @@ var game = new Vue({
 	el: "html",
 	data: {
 		player: {},
-		planting: -1,
+		planting: 0,
 		name: "bob",
 		pw: "blop",
 		showInv: false,
@@ -42,7 +42,7 @@ var game = new Vue({
 			}
 		},
 		touch: function(tile) {
-			if (tile.plant.age >= tile.plant.ripetime || this.planting == -1) {
+			if (tile.plant.age >= tile.plant.ripetime || this.planting == 0) {
 				console.log("Picking");
 				this.pick(tile);
 			} else {
@@ -65,7 +65,7 @@ var game = new Vue({
 								item.quantity--;
 							}
 						});
-						if (_this.player.inventory[_this.planting].quantity < 1) _this.planting = -1;
+						if (_this.player.inventory[_this.planting].quantity < 1) _this.planting = 0;
 					}
 				});
 			}
