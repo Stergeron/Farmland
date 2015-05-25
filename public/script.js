@@ -110,6 +110,7 @@ socket.emit("createFarm", creds[0], creds[1], function(farm) {
   game.pw = creds[1];
   if (farm) {
     game.fillFarm(farm);
+		game.landprice = game.player.farm.length*15;
   } else {
     console.error("SOMEONE ELSE LOGGED IN DINGUS");
   }
