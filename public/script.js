@@ -106,18 +106,18 @@ var creds = parser.hash.split("|");
 creds[0] = creds[0].replace("#", "");
 
 socket.emit("createFarm", creds[0], creds[1], function(farm) {
-  game.name = creds[0];
-  game.pw = creds[1];
-  if (farm) {
-    game.fillFarm(farm);
+	game.name = creds[0];
+	game.pw = creds[1];
+	if (farm) {
+		game.fillFarm(farm);
 		game.landprice = game.player.farm.length*15;
-  } else {
-    console.error("SOMEONE ELSE LOGGED IN DINGUS");
-  }
+	} else {
+		console.error("SOMEONE ELSE LOGGED IN DINGUS");
+	}
 });
 socket.on("update", function(data) {
 	game.fillFarm(data);
 });
 socket.on("market", function(data){
-  game.fillMarket(data);
+	game.fillMarket(data);
 });
