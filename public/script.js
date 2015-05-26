@@ -43,10 +43,8 @@ var game = new Vue({
 		},
 		touch: function(tile) {
 			if (tile.plant !== undefined && tile.plant.age >= tile.plant.ripetime) {
-				console.log("Picking");
 				this.pick(tile);
 			} else {
-				console.log("Planting");
 				this.plant(tile);
 			}
 		},
