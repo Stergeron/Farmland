@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{name}}'s Farmland</title>
+		<script src="bower_components/vue/dist/vue.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<link href="css/style.css" rel="stylesheet" type="text/css"/>
+		<link href="fontcustom/fontcustom.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<audio autoplay loop>
+			<source src="kenneth_macleod_whiskey.mp3">
+		</audio>
+		<div id="inventorybtn" v-on="click: toggleInventory()">{{showInv ? "Menu" : "Inventory"}}</div>
+		<div class="menu" v-show="(showInv && !showMarket)">
+			<div id="goldshow">{{player.gold}}g</div>
+			<h1>Inventory</h1>
+			<ul>
+				<li v-repeat="item: player.inventory" v-show="(item.quantity > 0)"> <i v-style="color: item.plant.color" class="icon-{{item.plant.name}}"></i> <b>{{item.plant.name}}</b> ~~
+					Ripening time: <b>{{item.plant.ripetime}}</b>s ~~ Minimum Yield: <b>{{item.plant.yield}}g</b> ~~ Quantity: <b>{{item.quantity}}</b> <div class="sqbtn" v-on="click: sell(item)">S (+{{item.plant.yield}})</div><div class="sqbtn" v-on="click: market(item)">M (+{{item.plant.yield+15}})</div>
+				</li>
+			</ul>
+			<div class="marketoggle" v-on="click: marketoggle()">Market</div>
+		</div>
+		<div class="menu" v-show="(showMarket && !showInv)">
+			<div id="goldshow">{{player.gold}}g</div>
+			<h1>Market</h1>
+			<ul>
+				<li v-repeat="item: marketListings" v-show="(item.quantity > 0)">
+					<i v-style="color: item.plant.color" class="icon-{{item.plant.name}}"></i> <b>{{item.plant.name}}</b> ~~ Seller: <b>{{item.seller}}</b> ~~ Ripening time: <b>{{item.plant.ripetime}}</b>s ~~ Minimum Yield: <b>{{item.plant.yield}}</b> ~~ Quantity: <b>{{item.quantity}}</b> <div class="sqbtn" v-on="click: buy(item)">B (-{{item.price}})</div>
+				</li>
+			</ul>
+			<div class="marketoggle" v-on="click: buy('land')">Buy Land (-{{landprice}}g)</div>
+			<div class="marketoggle" v-on="click: marketoggle()">Inventory</div>
+		</div>
+		<div id="ui" v-show="(!showInv && !showMarket)">
+			<div class="outer">
+				<div id="name">{{name}}'s farm</div></div>
+			<div id="farm">
+				<div class="row" v-repeat="row: player.farm">
+					<div class="plant" v-repeat="tile: row" v-on="click: touch(tile)">
+						<i v-show="(tile.plant.age >= tile.plant.ripetime)" v-style="color: tile.plant.color" class="icon-{{tile.plant.name}}"></i>
+						<i v-show="(tile.plant.age < tile.plant.ripetime)" v-style="color: tile.plant.color" class="icon-seed"></i>
+					</div>
+				</div>
+			</div>
+			<div class="outer bottom">
+				<div id="seeds">
+					<div class="seed" v-repeat="seed: player.inventory" v-show="seed.quantity > 0" v-on="click: plantingMode($index)" v-class="selected: planting == player.inventory.indexOf(seed)"><i v-style="color: seed.plant.color" class="icon-{{seed.plant.name}}"></i><span class="quantity">x{{seed.quantity}}</span></div>
+				</div>
+			</div>
+		</div>
+		<script src="js/script.js"></script>
+	</body>
+</html>
