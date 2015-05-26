@@ -1,55 +1,36 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>{{name}}'s Farmland</title>
-		<script src="bower_components/vue/dist/vue.js"></script>
-		<script src="/socket.io/socket.io.js"></script>
-		<link href="style.css" rel="stylesheet" type="text/css"/>
-		<link href="fontcustom/fontcustom.css" rel="stylesheet" type="text/css">
-	</head>
-	<body>
-		<audio autoplay loop>
-			<source src="kenneth_macleod_whiskey.mp3">
-		</audio>
-		<div id="inventorybtn" v-on="click: toggleInventory()">{{showInv ? "Menu" : "Inventory"}}</div>
-		<div class="menu" v-show="(showInv && !showMarket)">
-			<div id="goldshow">{{player.gold}}g</div>
-			<h1>Inventory</h1>
-			<ul>
-				<li v-repeat="item: player.inventory" v-show="(item.quantity > 0)"> <i v-style="color: item.plant.color" class="icon-{{item.plant.name}}"></i> <b>{{item.plant.name}}</b> ~~
-					Ripening time: <b>{{item.plant.ripetime}}</b>s ~~ Minimum Yield: <b>{{item.plant.yield}}g</b> ~~ Quantity: <b>{{item.quantity}}</b> <div class="sqbtn" v-on="click: sell(item)">S (+{{item.plant.yield}})</div><div class="sqbtn" v-on="click: market(item)">M (+{{item.plant.yield+15}})</div>
-				</li>
-			</ul>
-			<div class="marketoggle" v-on="click: marketoggle()">Market</div>
-		</div>
-		<div class="menu" v-show="(showMarket && !showInv)">
-			<div id="goldshow">{{player.gold}}g</div>
-			<h1>Market</h1>
-			<ul>
-				<li v-repeat="item: marketListings" v-show="(item.quantity > 0)">
-					<i v-style="color: item.plant.color" class="icon-{{item.plant.name}}"></i> <b>{{item.plant.name}}</b> ~~ Seller: <b>{{item.seller}}</b> ~~ Ripening time: <b>{{item.plant.ripetime}}</b>s ~~ Minimum Yield: <b>{{item.plant.yield}}</b> ~~ Quantity: <b>{{item.quantity}}</b> <div class="sqbtn" v-on="click: buy(item)">B (-{{item.price}})</div>
-				</li>
-			</ul>
-			<div class="marketoggle" v-on="click: buy('land')">Buy Land (-{{landprice}}g)</div>
-			<div class="marketoggle" v-on="click: marketoggle()">Inventory</div>
-		</div>
-		<div id="ui" v-show="(!showInv && !showMarket)">
-			<div class="outer">
-				<div id="name">{{name}}'s farm</div></div>
-			<div id="farm">
-				<div class="row" v-repeat="row: player.farm">
-					<div class="plant" v-repeat="tile: row" v-on="click: touch(tile)">
-						<i v-show="(tile.plant.age >= tile.plant.ripetime)" v-style="color: tile.plant.color" class="icon-{{tile.plant.name}}"></i>
-						<i v-show="(tile.plant.age < tile.plant.ripetime)" v-style="color: tile.plant.color" class="icon-seed"></i>
-					</div>
-				</div>
-			</div>
-			<div class="outer bottom">
-				<div id="seeds">
-					<div class="seed" v-repeat="seed: player.inventory" v-show="seed.quantity > 0" v-on="click: plantingMode($index)" v-class="selected: planting == player.inventory.indexOf(seed)"><i v-style="color: seed.plant.color" class="icon-{{seed.plant.name}}"></i><span class="quantity">x{{seed.quantity}}</span></div>
-				</div>
-			</div>
-		</div>
-		<script src="script.js"></script>
-	</body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Farmland</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	<div class="container">
+		<form class="form-signin">
+			<h2 class="form-signin-heading">Farmland</h2>
+			<label class="sr-only" for="username"></label>
+			<input id="username" class="form-control" type="text" autofocus="" required="" placeholder="username"></input>
+			<label class="sr-only" for="password"></label>
+			<input id="password" class="form-control" type="password" required="" placeholder="password"></input>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+		</form>
+	</div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
 </html>
