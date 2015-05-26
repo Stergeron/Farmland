@@ -214,24 +214,14 @@ io.on('connection', function(socket) {
 				rows: farms[name].farm.length + 1
 			};
 			farms[name].farm.push([]);
-			console.log("First pass");
 			for (var r = 0; r < farms[name].farm.length-1; r++) {
-				console.log(farms[name].farm[r]);
-				console.log("Row: " + r +", Col: " + (farms[name].farm[0].length-1));
 				farms[name].farm[r].push({ row:r, col:newlength.cols-1, plant: {} });
-				console.log(farms[name].farm[r]);
-				console.log("Row: " + r +", Col: " + (farms[name].farm[0].length-1));
 			}
-			console.log("Second pass");
 			for (var c = 0; c < farms[name].farm[0].length; c++) {
 				farms[name].farm[farms[name].farm.length-1].push({ row: farms[name].farm.length-1, col: c, plant: {} });
-				console.log("Row: " + (farms[name].farm.length-1) +", Col: " + c);
-				console.log(farms[name].farm[farms[name].farm.length-1]);
 			}
 			cb((farms[name].farm.length)*15);
 		}
-		console.log("FENTYRUSNTYU");
-		console.log(farms[name].farm);
 		socket.emit("update", farms[name]);
 	});
 	var growFood = function() {
